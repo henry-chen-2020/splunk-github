@@ -1,7 +1,7 @@
 const SPLUNK = "splunk";
 const TOKEN = {
   headers: {
-    Authorization: "token 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"
+    Authorization: "token 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"
   }
 };
 /**
