@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Paginator from "./Paginator";
 
 const PAGE_SIZE = 5;
 const sortList = (
@@ -18,9 +19,6 @@ const SplunkRepos = (props) => {
   const [sortOrder, setSortOrder] = useState({ sort: "name", ord: 1 });
   const list = props.data;
   const totalPage = Math.ceil(list.length / PAGE_SIZE);
-  const setPage = (evt) => {
-    setPageNum(parseInt(evt.target.value, 10));
-  };
   const setSort = (evt) => {
     const newSort = evt.target.getAttribute("data");
     if (newSort === sortOrder.sort) {
@@ -43,13 +41,6 @@ const SplunkRepos = (props) => {
       />
     );
   };
-  const GoPage = (props) => {
-    return (
-      <button className="num" value={props.page} onClick={setPage}>
-        {props.page}
-      </button>
-    );
-  };
 
   return (
     <div>
@@ -57,27 +48,11 @@ const SplunkRepos = (props) => {
         <h1>
           Splunk <span className="plus">+</span> Github
         </h1>
-        <span className="buttons">
-          <button
-            className="dir"
-            disabled={pageNum === 1}
-            onClick={() => setPageNum(pageNum - 1)}
-          >
-            Previous
-          </button>
-          <GoPage page="1" />
-          <GoPage page="2" />
-          <GoPage page="3" />
-          ...
-          <GoPage page={totalPage} />
-          <button
-            className="dir"
-            disabled={pageNum === totalPage}
-            onClick={() => setPageNum(pageNum + 1)}
-          >
-            Next
-          </button>
-        </span>
+        <Paginator
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+          totalPage={totalPage}
+        />
       </div>
       <table>
         <thead>
