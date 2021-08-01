@@ -27,6 +27,13 @@ const SplunkRepos = ({ list }) => {
       sortOrder.sort === attr ? (sortOrder.ord === 1 ? "up" : "down") : "";
     return <span className={arrow} />;
   };
+  const Col = ({ label, type, attr }) => {
+    return (
+      <th className={type} data={attr} onClick={setSort}>
+        {label} <Arrow attr={attr} />
+      </th>
+    );
+  };
 
   return (
     <div>
@@ -39,18 +46,10 @@ const SplunkRepos = ({ list }) => {
       <table>
         <thead>
           <tr>
-            <th className="name" data="name" onClick={setSort}>
-              Name <Arrow attr="name" />
-            </th>
-            <th className="number" data="author" onClick={setSort}>
-              Last Commiter <Arrow attr="author" />
-            </th>
-            <th className="number" data="forks" onClick={setSort}>
-              # Forks <Arrow attr="forks" />
-            </th>
-            <th className="number" data="stars" onClick={setSort}>
-              # Stars <Arrow attr="stars" />
-            </th>
+            <Col label="Name" type="name" attr="name" />
+            <Col label="Last Commiter" type="number" attr="author" />
+            <Col label="# Forks" type="number" attr="forks" />
+            <Col label="# Stars" type="number" attr="stars" />
           </tr>
         </thead>
         <tbody>
