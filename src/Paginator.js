@@ -4,10 +4,10 @@ const Paginator = ({ pageNum, setPageNum, totalPage }) => {
   const setPage = (evt) => {
     setPageNum(parseInt(evt.target.value, 10));
   };
-  const GoPage = (props) => {
+  const GoPage = ({ page }) => {
     return (
-      <button className="num" value={props.page} onClick={setPage}>
-        {props.page}
+      <button className="num" value={page} onClick={setPage}>
+        {page}
       </button>
     );
   };
