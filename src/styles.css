@@ -1,0 +1,101 @@
+/* enable dark theme for page */
+body {
+  font-family: sans-serif;
+  background-color: black;
+  color: white;
+}
+
+/* layout for elements above the table */
+.title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.buttons {
+  position: absolute;
+  right: 0px;
+  gap: 10px;
+}
+/* styles for elements above the table */
+span.plus {
+  background: -webkit-linear-gradient(blue, lightyellow);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+button {
+  background-color: gray;
+  color: lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+button.dir {
+  height: 30px;
+  width: 100px;
+}
+button.num {
+  height: 30px;
+  width: 30px;
+}
+button:disabled {
+  color: darkgray;
+  cursor: auto;
+}
+
+/* enable dark theme for the table */
+table {
+  background-color: #111111;
+  color: lightgrey;
+  width: 100%;
+}
+th,
+td {
+  padding: 8px;
+  height: 40px;
+}
+th {
+  text-align: left;
+  cursor: pointer;
+  color: darkgray;
+  font-style: normal;
+}
+th.name {
+  padding-left: 70px;
+}
+th.number {
+  width: 150px;
+}
+tbody tr:nth-child(odd) {
+  background-color: #222222;
+}
+/* effect for avatar, sorting arrows */
+.circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #333333;
+  margin-right: 20px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.up {
+  width: 0;
+  height: 0;
+  position: absolute;
+  margin-left: 8px;
+  border: 5px solid transparent;
+  border-top: 0;
+  border-bottom: 10px solid lightgray;
+}
+.down {
+  width: 0;
+  height: 0;
+  position: absolute;
+  margin-left: 8px;
+  border: 5px solid transparent;
+  border-bottom: 0;
+  border-top: 10px solid lightgray;
+}
