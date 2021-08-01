@@ -1,7 +1,7 @@
 const SPLUNK = "splunk";
 const TOKEN = {
   headers: {
-    Authorization: "token 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"
+    Authorization: `token ${process.env.REACT_APP_TOKEN}`
   }
 };
 /**
