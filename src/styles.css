@@ -18,7 +18,7 @@ body {
 }
 /* styles for elements above the table */
 span.plus {
-  background: -webkit-linear-gradient(blue, lightyellow);
+  background: -webkit-linear-gradient(teal, lightyellow);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
