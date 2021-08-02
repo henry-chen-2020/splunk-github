@@ -1,3 +1,4 @@
+require("dotenv").config({ path: "../.env.local" });
 const SPLUNK = "splunk";
 const TOKEN = {
   headers: {

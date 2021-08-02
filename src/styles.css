@@ -65,6 +65,7 @@ th.name {
 }
 th.number {
   width: 150px;
+  min-width: 150px;
 }
 tbody tr:nth-child(odd) {
   background-color: #222222;
