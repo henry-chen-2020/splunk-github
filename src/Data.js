@@ -33,26 +33,28 @@ async function getSplunkRepoPages(per_page = 100) {
 /**
  * get list of repos with required fields
  */
-let splunkRepos;
 function getGitHubRepoURL(repo) {
   return `https://api.github.com/repos/${SPLUNK}/${repo}/commits/HEAD`;
 }
 async function listSplunkRepos() {
-  if (!splunkRepos) {
-    const data = await getSplunkRepos();
-    const results = data.map(async (repo) => {
-      const response = await fetch(getGitHubRepoURL(repo.name), TOKEN);
-      const json = await response.json();
-      return {
-        key: repo.id,
-        name: repo.name,
-        author: json.author?.id ?? 0,
-        forks: repo.forks,
-        stars: repo.watchers
-      };
-    });
-    splunkRepos = await Promise.all(results);
-  }
+  const t0 = performance.now();
+  const data = await getSplunkRepos();
+  const t1 = performance.now();
+  const results = data.map(async (repo) => {
+    const response = await fetch(getGitHubRepoURL(repo.name), TOKEN);
+    const json = await response.json();
+    return {
+      key: repo.id,
+      name: repo.name,
+      author: json.author?.id ?? 0,
+      forks: repo.forks,
+      stars: repo.watchers
+    };
+  });
+  const t2 = performance.now();
+  const splunkRepos = await Promise.all(results);
+  const t3 = performance.now();
+  console.log(`all repos: ${t1 - t0}, map: ${t2 - t0}, collect: ${t3 - t0}`);
   return splunkRepos;
 }
 
