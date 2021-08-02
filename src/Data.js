@@ -6,7 +6,7 @@ const TOKEN = {
   }
 };
 /**
- * A function to cache call to GitHub API
+ * Fetch all repos under Splunk across multiple pages
  */
 async function getSplunkRepos(per_page = 100) {
   const pages = await getSplunkRepoPages(per_page);
@@ -22,7 +22,9 @@ async function getSplunkRepos(per_page = 100) {
 function getGitHubURL(per_page, page = 1) {
   return `https://api.github.com/orgs/${SPLUNK}/repos?per_page=${per_page}&page=${page}`;
 }
-
+/**
+ * Get number of page for a given page size
+ */
 async function getSplunkRepoPages(per_page = 100) {
   const response = await fetch(getGitHubURL(per_page));
   const links = response.headers.get("link");
@@ -32,7 +34,7 @@ async function getSplunkRepoPages(per_page = 100) {
 }
 
 /**
- * get list of repos with required fields
+ * Get a list of repos with additional required fields, time the fetcing
  */
 function getGitHubRepoURL(repo) {
   return `https://api.github.com/repos/${SPLUNK}/${repo}/commits/HEAD`;

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Paginator from "./Paginator";
+import { PAGE_SIZE, Paginator } from "./Paginator";
 
-const PAGE_SIZE = 5;
 const sortList = (list, { sort, ord }, pageNum, pageSize = PAGE_SIZE) => {
   const start = (pageNum - 1) * pageSize;
   return list
@@ -10,7 +9,6 @@ const sortList = (list, { sort, ord }, pageNum, pageSize = PAGE_SIZE) => {
 };
 
 const SplunkRepos = ({ list }) => {
-  const totalPage = Math.ceil(list.length / PAGE_SIZE);
   const [pageNum, setPageNum] = useState(1);
   const [sortOrder, setSortOrder] = useState({ sort: "name", ord: 1 });
   const setSort = (evt) => {
@@ -22,12 +20,12 @@ const SplunkRepos = ({ list }) => {
       setPageNum(1);
     }
   };
-  const Arrow = ({ attr }) => {
-    const arrow =
-      sortOrder.sort === attr ? (sortOrder.ord === 1 ? "up" : "down") : "";
-    return <span className={arrow} />;
-  };
   const Col = ({ label, type, attr }) => {
+    const Arrow = ({ attr }) => {
+      const arrow =
+        sortOrder.sort === attr ? (sortOrder.ord === 1 ? "up" : "down") : "";
+      return <span className={arrow} />;
+    };
     return (
       <th className={type} data={attr} onClick={setSort}>
         {label} <Arrow attr={attr} />
@@ -41,7 +39,7 @@ const SplunkRepos = ({ list }) => {
         <h1>
           Splunk <span className="plus">+</span> Github
         </h1>
-        <Paginator {...{ pageNum, setPageNum, totalPage }} />
+        <Paginator {...{ pageNum, setPageNum, list }} />
       </div>
       <table>
         <thead>
