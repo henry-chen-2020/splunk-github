@@ -39,7 +39,9 @@ import listSplunkRepos from "./Data";
 
 const SplunkList = () => {
   const [list, setList] = useState([]);
-  useEffect(() => listSplunkRepos().then((data) => setList(data)), []);
+  useEffect(() => {
+    listSplunkRepos().then((data) => setList(data));
+  }, []);
   return <SplunkRepos list={list} />;
 };
 

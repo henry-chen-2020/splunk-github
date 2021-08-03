@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PAGE_SIZE, Paginator } from "./Paginator";
 
-const sortList = (list, { sort, ord }, pageNum, pageSize = PAGE_SIZE) => {
+const sortPage = (list, { sort, ord }, pageNum, pageSize = PAGE_SIZE) => {
   const start = (pageNum - 1) * pageSize;
   return list
     .sort((a, b) => (a[sort] > b[sort] ? 1 : -1) * ord)
@@ -34,7 +34,7 @@ const SplunkRepos = ({ list }) => {
   };
 
   return (
-    <div>
+    <>
       <div className="title">
         <h1>
           Splunk <span className="plus">+</span> Github
@@ -51,7 +51,7 @@ const SplunkRepos = ({ list }) => {
           </tr>
         </thead>
         <tbody>
-          {sortList(list, sortOrder, pageNum).map((row) => {
+          {sortPage(list, sortOrder, pageNum).map((row) => {
             const initials = row.name?.slice(0, 1) + row.name?.slice(-1);
             return (
               <tr key={row.key}>
@@ -69,7 +69,7 @@ const SplunkRepos = ({ list }) => {
           })}
         </tbody>
       </table>
-    </div>
+    </>
   );
 };
 
